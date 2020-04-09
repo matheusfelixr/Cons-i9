@@ -10,6 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Data;
 
 @Data
@@ -25,17 +29,26 @@ public class Product implements Serializable{
 	
 	@NotNull
 	private String name;
-	
-	@NotNull
-	private Boolean canceled;
-	
-	@NotNull
-	private Date registrationDate ;
-	
+
 	@NotNull
 	private Float costValue;
 
 	@NotNull
-	private Float saleValue
- ;
+	private Float saleValue;
+
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Brazil/East")
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private Date registrationDate ;
+	
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Brazil/East")
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private Date updateDate ;
+	
+	@NotNull
+	private Boolean cancellation;
+	
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Brazil/East")
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private Date cancellationDate;
+
 }
